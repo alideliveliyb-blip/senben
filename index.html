@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KBA - Zihin ve Algı Denetimi</title>
+    <title>KBA - Zihin ve Algı Terazisi</title>
     <style>
         :root { 
             --kba-ana: #1b4d3e; 
             --kba-beyaz: #ffffff; 
             --kba-zemin: #f8faf8; 
             --whatsapp: #25d366; 
-            --uyari: #d35400;
+            --yalan: #c0392b;
             --dogru: #2980b9;
         }
         body { 
@@ -26,67 +26,69 @@
         .kapsayici { 
             background: var(--kba-beyaz); 
             width: 90%; 
-            max-width: 420px; 
-            border-radius: 25px; 
-            border: 1px solid rgba(27,77,62,0.2); 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06); 
-            padding: 35px; 
+            max-width: 440px; 
+            border-radius: 30px; 
+            border: 1px solid rgba(27,77,62,0.15); 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.08); 
+            padding: 40px; 
             text-align: center; 
         }
-        .ust-bolum { border-bottom: 1.5px solid var(--kba-ana); margin-bottom: 25px; padding-bottom: 15px; }
-        h1 { font-size: 34px; margin: 0; letter-spacing: 6px; font-weight: 400; }
-        .alt-baslik { font-size: 11px; letter-spacing: 1px; margin-top: 5px; }
+        .ust-bolum { border-bottom: 2px solid var(--kba-ana); margin-bottom: 25px; padding-bottom: 15px; }
+        h1 { font-size: 38px; margin: 0; letter-spacing: 8px; font-weight: 400; }
+        .alt-baslik { font-size: 12px; letter-spacing: 2px; margin-top: 5px; opacity: 0.8; }
         
-        .ana-not {
-            font-size: 13px;
+        .vizyon-notu {
+            font-size: 14px;
             font-style: italic;
-            color: #555;
-            margin-bottom: 20px;
-            line-height: 1.5;
-            background: #f1f5f3;
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid var(--kba-ana);
+            color: #444;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            background: #f1f6f4;
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 5px solid var(--kba-ana);
+            text-align: left;
         }
 
         input { 
-            width: 100%; padding: 14px; margin: 15px 0; border: 1.5px solid #ddd; 
-            border-radius: 12px; box-sizing: border-box; font-size: 16px; 
+            width: 100%; padding: 16px; margin: 15px 0; border: 1.5px solid #ddd; 
+            border-radius: 12px; box-sizing: border-box; font-size: 16px; outline: none;
         }
         
         .btn-aksiyon { 
-            background: var(--kba-ana); color: white; border: none; padding: 18px; 
-            border-radius: 12px; cursor: pointer; width: 100%; font-size: 17px; 
+            background: var(--kba-ana); color: white; border: none; padding: 20px; 
+            border-radius: 12px; cursor: pointer; width: 100%; font-size: 18px; 
             font-weight: 600; letter-spacing: 1px; transition: 0.3s; 
         }
+        .btn-aksiyon:hover { background: #25614d; transform: translateY(-2px); }
         
-        .sonuc-panel { display: none; text-align: left; animation: ortayaCik 0.6s ease; }
+        .sonuc-ekrani { display: none; text-align: left; animation: akis 0.6s ease; }
         
         .kart {
-            padding: 15px; border-radius: 15px; margin-bottom: 15px; border-left: 8px solid;
-            line-height: 1.6; font-size: 15px;
+            padding: 20px; border-radius: 18px; margin-bottom: 15px; border-left: 10px solid;
+            line-height: 1.7; font-size: 15px; box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
 
-        .zihin-kart { background: #fdfefe; border-color: var(--kba-ana); }
-        .algi-kart { background: #f4f8fb; border-color: var(--dogru); }
+        .zihin-kart { background: #ffffff; border-color: var(--kba-ana); }
+        .algi-kart { background: #fdfdfd; border-color: var(--dogru); }
 
-        .tavsiye-box { 
-            margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.6); 
-            border-radius: 8px; font-style: italic; font-size: 13px; border: 1px dashed #ccc; 
+        .tavsiye-vurgu { 
+            margin-top: 12px; padding: 12px; background: rgba(255,255,255,0.8); 
+            border-radius: 10px; font-style: italic; font-size: 13.5px; border: 1px dashed #bbb; color: #555;
         }
         
-        .whatsapp-box { 
-            margin-top: 20px; padding: 15px; background: #e7f9ee; border-radius: 15px; 
-            border: 1px solid var(--whatsapp);
+        .whatsapp-alan { 
+            margin-top: 25px; padding: 20px; background: #f0fff4; border-radius: 20px; 
+            border: 1px solid var(--whatsapp); text-align: center;
         }
         
         .btn-wa { 
-            background: var(--whatsapp); color: white; padding: 12px; border-radius: 10px; 
-            text-decoration: none; display: block; margin-top: 10px; text-align: center; font-weight: bold;
+            background: var(--whatsapp); color: white; padding: 14px; border-radius: 12px; 
+            text-decoration: none; display: block; margin-top: 12px; text-align: center; font-weight: bold;
         }
 
-        @keyframes ortayaCik { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .copyright { font-size: 10px; margin-top: 30px; color: #999; }
+        @keyframes akis { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        .copyright { font-size: 11px; margin-top: 35px; color: #aaa; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -97,31 +99,31 @@
         <div class="alt-baslik">KENDİLİK BİLİNCİ AKADEMİSİ</div>
     </div>
 
-    <div id="girisEkrani">
-        <div class="ana-not">
+    <div id="baslangic">
+        <div class="vizyon-notu">
             "Anlamak bir aşama, kabullenmek bir başka aşamadır. Direnci bırak, hakikate teslim ol ki itidal seni şifalandırsın."
         </div>
-        <input type="text" id="kullaniciAdi" placeholder="İsminizi Yazın...">
-        <button class="btn-aksiyon" onclick="sistemiBaslat()">SİSTEME GİRİŞ</button>
+        <input type="text" id="isimGirdisi" placeholder="Lütfen İsminizi Giriniz...">
+        <button class="btn-aksiyon" onclick="sistemiAc()">SİSTEME GİRİŞ YAP</button>
     </div>
 
-    <div id="islemEkrani" style="display:none;">
-        <p id="karsilama" style="font-size: 18px; font-weight: 600;"></p>
-        <button class="btn-aksiyon" onclick="denetimYap()">DENETİMİ BAŞLAT</button>
+    <div id="denetimMerkezi" style="display:none;">
+        <p id="selamlama" style="font-size: 20px; font-weight: 600; margin-bottom: 20px;"></p>
+        <button class="btn-aksiyon" onclick="tamDenetim()">BÜTÜNSEL DENETİMİ BAŞLAT</button>
         
-        <div id="sonucPanel" class="sonuc-panel">
-            <h4 style="margin: 20px 0 10px 0; border-bottom: 1px solid #eee;">ANALİZ SONUÇLARI</h4>
+        <div id="sonucAlani" class="sonuc-ekrani">
+            <h3 style="margin: 25px 0 15px 0; font-size: 16px; letter-spacing: 1px; color: #777; text-align: center;">DENETİM RAPORU</h3>
             
-            <div id="zihinKart" class="kart"></div>
-            
-            <div id="algiKart" class="kart"></div>
+            <div id="zihinRapor" class="kart zihin-kart"></div>
+            <div id="algiRapor" class="kart algi-kart"></div>
 
-            <div class="whatsapp-box">
-                <div style="font-size: 12px; color: #1b4d3e; font-weight: bold;">🔍 Hakikati Keşfetmeye Hazır mısınız?</div>
-                <div style="font-size: 11px; color: #555; margin-top: 5px;">Zihinsel döngülerinizi ve algı yönetiminizi uzman eşliğinde çözümlemek için bize ulaşın.</div>
+            <div class="whatsapp-alan">
+                <div style="font-size: 14px; color: #1b4d3e; font-weight: bold;">Derinlemesine Bireysel Analiz</div>
+                <div style="font-size: 12px; color: #666; margin-top: 6px;">Zihinsel döngülerinizi ve algı haritanızı KBA uzmanlığı ile çözümlemek için danışmanlık hattımıza yazın.</div>
                 <a href="https://wa.me/905069763232" target="_blank" class="btn-wa">WhatsApp Danışmanlık Hattı</a>
             </div>
-            <center><button style="background:none; border:none; text-decoration:underline; cursor:pointer; color:#bbb; margin-top:20px;" onclick="location.reload()">Yeni Denetim</button></center>
+            
+            <center><button style="background:none; border:none; text-decoration:underline; cursor:pointer; color:#ccc; margin-top:25px; font-size:12px;" onclick="location.reload()">SİSTEMİ SIFIRLA</button></center>
         </div>
     </div>
 
@@ -129,20 +131,20 @@
 </div>
 
 <script>
-    let ebcedDegeri = 0;
-    const db = { "süleyman": 191, "emine": 106, "derya": 215, "selman": 181, "ayşe": 377 };
+    let userEbced = 0;
+    const sabitler = { "süleyman": 191, "emine": 106, "derya": 215, "selman": 181, "ayşe": 377 };
     
-    const hikmetler = [
-        { ad: "Güneş", ebced: 400, marifet: "Yetim hakkını korumalısın." },
-        { ad: "Kamer", ebced: 441, marifet: "Ana babaya tevazulu yaklaşıp yumuşak konuşmalısın." },
-        { ad: "Merih", ebced: 131, marifet: "Dosdoğru olmak adına hareket etmelisin." },
-        { ad: "Utarid", ebced: 566, marifet: "İnsanların hakkını korumalısın." },
-        { ad: "Müşteri", ebced: 444, marifet: "Olaylar hakkında ince fikirli olmalısın." },
-        { ad: "Zühre", ebced: 566, marifet: "Emanete riayet etmeli ve ihanet etmemelisin." },
-        { ad: "Zühal", ebced: 496, marifet: "İşin sonunu düşünerek hareket etmelisin." }
+    const felekler = [
+        { marifet: "Yetim hakkını korumalısın.", e: 400 },
+        { marifet: "Ana babaya tevazulu yaklaşıp yumuşak konuşmalısın.", e: 441 },
+        { marifet: "Dosdoğru olmak adına hareket etmelisin.", e: 131 },
+        { marifet: "İnsanların hakkını korumalısın.", e: 566 },
+        { marifet: "Olaylar hakkında ince fikirli olmalısın.", e: 444 },
+        { marifet: "Emanete riayet etmeli ve ihanet etmemelisin.", e: 566 },
+        { marifet: "İşin sonunu düşünerek hareket etmelisin.", e: 496 }
     ];
 
-    const zaaflar = {
+    const zaafTanimi = {
         1: "Olaylara düz mantıkla bakıyorsun.",
         2: "Çıkarcı ve kendi menfaatini gözeten bir yapıdasın.",
         3: "Hırsızlık zannı; bir şeylerin çalınacağı hırsıyla bakıyorsun.",
@@ -152,59 +154,53 @@
         7: "Hatalı bir zeminde, tek taraflı bir muhabbet arayışındasın."
     };
 
-    function sistemiBaslat() {
-        let isim = document.getElementById('kullaniciAdi').value.trim().toLowerCase();
-        if(!isim) return;
-        if(db[isim]) ebcedDegeri = db[isim];
+    function sistemiAc() {
+        let n = document.getElementById('isimGirdisi').value.trim().toLowerCase();
+        if(!n) return;
+        if(sabitler[n]) userEbced = sabitler[n];
         else {
-            let sor = prompt(isim + " için ebced değerini girin:");
-            if(!sor) return;
-            ebcedDegeri = parseInt(sor);
+            let v = prompt(n + " ismi için ebced değeri:");
+            if(!v) return;
+            userEbced = parseInt(v);
         }
-        document.getElementById('girisEkrani').style.display = 'none';
-        document.getElementById('islemEkrani').style.display = 'block';
-        document.getElementById('karsilama').innerText = "Selam, " + isim.toUpperCase();
+        document.getElementById('baslangic').style.display = 'none';
+        document.getElementById('denetimMerkezi').style.display = 'block';
+        document.getElementById('selamlama').innerText = "Hoş Geldiniz, " + n.toUpperCase();
     }
 
-    function denetimYap() {
-        const suAn = new Date();
-        const sira = (suAn.getDay() + suAn.getHours()) % 7;
-        const gezegen = hikmetler[sira];
+    function tamDenetim() {
+        const d = new Date();
+        const f = felekler[(d.getDay() + d.getHours()) % 7];
+        const t = userEbced + f.e;
         
-        // 1. ZİHİN ANALİZİ (Mevcut Sistem)
-        let evre = (suAn.getSeconds() % 2 === 0) ? "Olur" : "Sıkıntılı";
-        let mod7 = (ebcedDegeri + gezegen.ebced) % 7;
-        if(mod7 === 0) mod7 = 7;
-        
-        const zKart = document.getElementById('zihinKart');
-        if(evre === "Olur") {
-            zKart.style.borderColor = "#27ae60";
-            zKart.innerHTML = `<b>🧠 ZİHİN DURUMU: DENGELİ</b><br><small>Zihniniz şu an hikmetle uyumlu çalışıyor. İlkeniz: ${gezegen.marifet}</small>`;
+        // --- 1. ZİHİN DENETİMİ ---
+        const zR = document.getElementById('zihinRapor');
+        let isSikintili = (d.getSeconds() % 2 !== 0);
+        let m7 = (t % 7 === 0) ? 7 : (t % 7);
+
+        if(!isSikintili) {
+            zR.style.borderColor = "#27ae60";
+            zR.innerHTML = `<b>🧠 ZİHİN: DENGELİ (OLUR)</b><br><small>Zihniniz şu an hikmetli bir akışta. <br><b>İlkeniz:</b> ${f.marifet}</small>`;
         } else {
-            zKart.style.borderColor = "#e67e22";
-            zKart.innerHTML = `<b>🧠 ZİHİN DURUMU: KISITLI</b><br><small>Zihniniz şu an bir zaafa takılmış durumda: <b>${zaaflar[mod7]}</b><br>Düzeltme: ${gezegen.marifet}</small>`;
+            zR.style.borderColor = "#e67e22";
+            zR.innerHTML = `<b>🧠 ZİHİN: KISITLI (ZAaf)</b><br><small>Zihin şu an şu noktaya takıldı: <b>${zaafTanimi[m7]}</b></small><div class="tavsiye-vurgu"><b>Düzeltme:</b> ${f.marifet}</div>`;
         }
 
-        // 2. ALGI ANALİZİ (YENİ SİSTEM - Sizin Formülünüz)
-        const toplam = ebcedDegeri + gezegen.ebced;
-        const aKart = document.getElementById('algiKart');
-        
-        // Çift veya Sıfır mı? (Toplam % 2 === 0) -> Yalan Haber
-        // Tek mi ve Son rakamı 5 mi?
-        let isDogru = (toplam % 2 !== 0); // Tek mi?
-        let isBes = (toplam % 10 === 5); // Son rakam 5 mi?
+        // --- 2. ALGI TANIMI (Yalan/Doğru Haber) ---
+        const aR = document.getElementById('algiRapor');
+        let isYalan = (t === 0 || t % 2 === 0);
+        let isHakikat = (t % 2 !== 0 || t % 10 === 5);
 
-        if (toplam === 0 || toplam % 2 === 0) {
-            aKart.style.borderColor = "#c0392b";
-            aKart.innerHTML = `<b>👁️ ALGI TANIMI: İLLÜZYON / YALAN</b><br><small>Dikkat! Şu an maruz kaldığınız bilgi veya haber "Yalan Haber" etkisi taşıyor olabilir. Zihniniz yanlış bir mana yükleme riskinde.</small>`;
-        } else if (isDogru || isBes) {
-            aKart.style.borderColor = "#2980b9";
-            aKart.innerHTML = `<b>👁️ ALGI TANIMI: DOĞRU / HAKİKAT</b><br><small>Şu an aldığınız algı ve haberler hakikat temelli görünüyor. Bilgiye güvenerek itidalli karar verebilirsiniz.</small>`;
+        if(isYalan) {
+            aR.style.borderColor = "#c0392b";
+            aR.innerHTML = `<b>👁️ ALGI: İLLÜZYON / MANİPÜLASYON</b><br><small>Dikkat! Maruz kaldığınız bilgi veya olayda "Yalan Haber" etkisi baskın. Yanlış mana yüklememeye özen gösterin.</small>`;
+        } else {
+            aR.style.borderColor = "#2980b9";
+            aR.innerHTML = `<b>👁️ ALGI: HAKİKAT / DOĞRU</b><br><small>Algılarınız şu an gerçeğe açık. Gelen bilgi hakikat temelli görünüyor; itidalli bir şekilde kabul edebilirsiniz.</small>`;
         }
 
-        document.getElementById('sonucPanel').style.display = "block";
+        document.getElementById('sonucAlani').style.display = "block";
     }
 </script>
 </body>
 </html>
-
