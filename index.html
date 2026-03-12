@@ -10,7 +10,6 @@
             --kba-beyaz: #ffffff; 
             --kba-zemin: #f8faf8; 
             --whatsapp: #25d366; 
-            --uyanisl: #7f8c8d;
             --altin: #d4af37;
         }
         body { font-family: 'Georgia', serif; background-color: var(--kba-zemin); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; color: var(--kba-ana); }
@@ -31,12 +30,14 @@
         .algi-kart { background: #fdfdfd; border-color: #2980b9; }
 
         .btn-uyanis { background: var(--altin); color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; width: 100%; font-size: 14px; font-weight: bold; margin-top: 10px; display: none; letter-spacing: 1px; }
-        
         .uyanis-metni { display: none; margin-top: 15px; padding: 15px; background: #fffdf0; border-radius: 12px; border: 1px solid var(--altin); font-style: italic; color: #7f6a2d; font-size: 14px; line-height: 1.6; animation: parlama 1s ease; }
 
         .whatsapp-alan { margin-top: 25px; padding: 20px; background: #f0fff4; border-radius: 20px; border: 1px solid var(--whatsapp); text-align: center; }
         .btn-wa { background: var(--whatsapp); color: white; padding: 14px; border-radius: 12px; text-decoration: none; display: block; margin-top: 12px; text-align: center; font-weight: bold; }
 
+        .btn-yeniden { background:none; border:none; text-decoration:underline; cursor:pointer; color:#444; margin-top:25px; font-size: 14px; font-weight: bold; }
+        .copyright { font-size: 10px; margin-top: 30px; color: #aaa; letter-spacing: 1px; border-top: 1px solid #eee; padding-top: 15px; }
+        
         @keyframes akis { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes parlama { from { background: #fff; } to { background: #fffdf0; } }
     </style>
@@ -69,32 +70,35 @@
             <div id="uyanisMetni" class="uyanis-metni"></div>
 
             <div class="whatsapp-alan">
-                <a href="https://wa.me/905069763232" target="_blank" class="btn-wa">KBA Danışmanlık Hattı</a>
+                <div style="font-size: 13px; color: var(--kba-ana); font-weight: bold;">Farkındalığı Dönüştürün</div>
+                <a href="https://wa.me/905069763232" target="_blank" class="btn-wa">KBA WhatsApp Danışmanlık Hattı</a>
             </div>
-            <center><button style="background:none; border:none; text-decoration:underline; cursor:pointer; color:#ccc; margin-top:25px; font-size:12px;" onclick="location.reload()">YENİ DENETİM</button></center>
+            <center><button class="btn-yeniden" onclick="location.reload()">YENİ DENETİM BAŞLAT</button></center>
         </div>
     </div>
+
+    <div class="copyright">© 2026 KBA - TÜM HAKLARI MAHFUZDUR</div>
 </div>
 
 <script>
     let userEbced = 0;
-    const sabitler = { "süleyman": 191, "emine": 106, "derya": 215, "selman": 181, "ayşe": 377 };
+    // İSİM VERİ TABANI
+    const sabitler = { 
+        "süleyman": 191, "emine": 106, "derya": 215, 
+        "selman": 181, "ayşe": 377, "ahmet": 53,
+        "leyla": 71, "mehmet": 92
+    };
+
     const felekler = [{marifet:"Yetim hakkını korumalısın.",e:400},{marifet:"Ana babaya tevazulu yaklaşıp yumuşak konuşmalısın.",e:441},{marifet:"Dosdoğru olmak adına hareket etmelisin.",e:131},{marifet:"İnsanların hakkını korumalısın.",e:566},{marifet:"Olaylar hakkında ince fikirli olmalısın.",e:444},{marifet:"Emanete riayet etmeli ve ihanet etmemelisin.",e:566},{marifet:"İşin sonunu düşünerek hareket etmelisin.",e:496}];
     const zaafTanimi = {1:"Olaylara düz mantıkla bakıyor olabilir misiniz?",2:"Şu an kendi menfaatinizi önceliyor olma ihtimaliniz nedir?",3:"Zihninizde bir şeylerin eksileceği veya çalınacağı kaygısı mı var?",4:"Duygusal bir beklentiyle olayları tek taraflı yorumluyor olabilir misiniz?",5:"Olumsuz sonuçlara odaklanmak sizi hakikatten uzaklaştırıyor olabilir mi?",6:"Başkalarının ne düşündüğüne dair bir yoğunluk mu yaşıyorsunuz?",7:"İlişkilerinizde hatalı bir zeminde muhabbet arayışında mısınız?"};
 
-    const uyanisSozleri = [
-        "Zihin uyursa rüya görür, zihin uyanırsa gerçeği görür. Şu an gördüğün bir rüya mı yoksa hakikat mi? Derin bir nefes al ve olaydaki kendi payını gör.",
-        "Düz mantık, bir tabloya sadece boya lekesi olarak bakmaktır. Olayın arkasındaki ressamı ve sana verdiği mesajı görmeye niyet et.",
-        "Sana acı veren şey olayın kendisi değil, o olaya yüklediğin manadır. Manayı değiştir, şifa başlasın.",
-        "Kendi yazdığın senaryoda başrolü nefis mi oynuyor, yoksa akıl mı? Sahneyi bir de seyirci koltuğundan izle.",
-        "Düğüm, senin çözmeye çalıştığın yerde değil; düğüm senin bakış açında. Bakışını 'olanın hayrına' çevirdiğinde düğüm kendiliğinden çözülecek."
-    ];
+    const uyanisSozleri = ["Zihin uyursa rüya görür, zihin uyanırsa gerçeği görür. Şu an gördüğün bir rüya mı yoksa hakikat mi?","Düz mantık, bir tabloya sadece boya lekesi olarak bakmaktır. Olayın arkasındaki ressamı görmeye niyet et.","Sana acı veren şey olayın kendisi değil, o olaya yüklediğin manadır. Manayı değiştir, şifa başlasın.","Kendi yazdığın senaryoda başrolü nefis mi oynuyor, yoksa akıl mı? Sahneyi bir de seyirci koltuğundan izle.","Düğüm senin bakış açında. Bakışını 'olanın hayrına' çevirdiğinde düğüm kendiliğinden çözülecek."];
 
     function sistemiAc() {
         let n = document.getElementById('isimGirdisi').value.trim().toLowerCase();
         if(!n) return;
         if(sabitler[n]) userEbced = sabitler[n];
-        else { let v = prompt(n + " için ebced:"); if(!v) return; userEbced = parseInt(v); }
+        else { let v = prompt(n + " için ebced değerini sayı olarak girin:"); if(!v) return; userEbced = parseInt(v); }
         document.getElementById('baslangic').style.display = 'none';
         document.getElementById('denetimMerkezi').style.display = 'block';
         document.getElementById('selamlama').innerText = "Selam, " + n.toUpperCase();
@@ -114,7 +118,7 @@
         }
 
         let isRisk = (t % 2 === 0);
-        aR.innerHTML = isRisk ? `<b>👁️ ALGI ANALİZİ:</b><br><small>Maruz kaldığınız mana, 'yalan' veya 'yanlış algı' içeriyor olabilir. Sükunetle tekrar tartın.</small>` : `<b>👁️ ALGI ANALİZİ:</b><br><small>Algılarınız hakikatle örtüşüyor. Sağduyu ile ilerleyin.</small>`;
+        aR.innerHTML = isRisk ? `<b>👁️ ALGI ANALİZİ:</b><br><small>Maruz kaldığınız mana, 'yanıltıcı algı' içeriyor olabilir. Sükunetle tekrar tartın.</small>` : `<b>👁️ ALGI ANALİZİ:</b><br><small>Algılarınız hakikatle örtüşüyor. Sağduyu ile ilerleyin.</small>`;
         
         document.getElementById('sonucAlani').style.display = "block";
         document.getElementById('uyanisButonu').style.display = "block";
@@ -129,3 +133,4 @@
 </script>
 </body>
 </html>
+
