@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
@@ -40,6 +40,18 @@
         h1 { font-size: 34px; margin: 0; letter-spacing: 6px; font-weight: 400; }
         .alt-baslik { font-size: 11px; letter-spacing: 1px; margin-top: 5px; }
         
+        .ana-not {
+            font-size: 14px;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            background: #f1f5f3;
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--kba-ana);
+        }
+
         input { 
             width: 100%; 
             padding: 14px; 
@@ -148,6 +160,9 @@
     </div>
 
     <div id="girisEkrani">
+        <div class="ana-not">
+            "Anlamak bir aşama, kabullenmek bir başka aşamadır. Direnci bırak, hakikate teslim ol ki itidal seni şifalandırsın."
+        </div>
         <input type="text" id="kullaniciAdi" placeholder="İsminizi Yazın...">
         <button class="btn-aksiyon" onclick="sistemiBaslat()">SİSTEME GİRİŞ</button>
     </div>
@@ -247,3 +262,4 @@
 </script>
 </body>
 </html>
+
