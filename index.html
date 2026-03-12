@@ -178,5 +178,33 @@
         
         const zKart = document.getElementById('zihinKart');
         if(evre === "Olur") {
-            zKart
+            zKart.style.borderColor = "#27ae60";
+            zKart.innerHTML = `<b>🧠 ZİHİN DURUMU: DENGELİ</b><br><small>Zihniniz şu an hikmetle uyumlu çalışıyor. İlkeniz: ${gezegen.marifet}</small>`;
+        } else {
+            zKart.style.borderColor = "#e67e22";
+            zKart.innerHTML = `<b>🧠 ZİHİN DURUMU: KISITLI</b><br><small>Zihniniz şu an bir zaafa takılmış durumda: <b>${zaaflar[mod7]}</b><br>Düzeltme: ${gezegen.marifet}</small>`;
+        }
+
+        // 2. ALGI ANALİZİ (YENİ SİSTEM - Sizin Formülünüz)
+        const toplam = ebcedDegeri + gezegen.ebced;
+        const aKart = document.getElementById('algiKart');
+        
+        // Çift veya Sıfır mı? (Toplam % 2 === 0) -> Yalan Haber
+        // Tek mi ve Son rakamı 5 mi?
+        let isDogru = (toplam % 2 !== 0); // Tek mi?
+        let isBes = (toplam % 10 === 5); // Son rakam 5 mi?
+
+        if (toplam === 0 || toplam % 2 === 0) {
+            aKart.style.borderColor = "#c0392b";
+            aKart.innerHTML = `<b>👁️ ALGI TANIMI: İLLÜZYON / YALAN</b><br><small>Dikkat! Şu an maruz kaldığınız bilgi veya haber "Yalan Haber" etkisi taşıyor olabilir. Zihniniz yanlış bir mana yükleme riskinde.</small>`;
+        } else if (isDogru || isBes) {
+            aKart.style.borderColor = "#2980b9";
+            aKart.innerHTML = `<b>👁️ ALGI TANIMI: DOĞRU / HAKİKAT</b><br><small>Şu an aldığınız algı ve haberler hakikat temelli görünüyor. Bilgiye güvenerek itidalli karar verebilirsiniz.</small>`;
+        }
+
+        document.getElementById('sonucPanel').style.display = "block";
+    }
+</script>
+</body>
+</html>
 
