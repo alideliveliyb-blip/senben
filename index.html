@@ -1,9 +1,9 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KBA - Zihin Dünyası Denetimi</title>
+    <title>KBA - Zihin ve Algı Denetimi</title>
     <style>
         :root { 
             --kba-ana: #1b4d3e; 
@@ -11,6 +11,7 @@
             --kba-zemin: #f8faf8; 
             --whatsapp: #25d366; 
             --uyari: #d35400;
+            --dogru: #2980b9;
         }
         body { 
             font-family: 'Georgia', serif; 
@@ -32,20 +33,16 @@
             padding: 35px; 
             text-align: center; 
         }
-        .ust-bolum { 
-            border-bottom: 1.5px solid var(--kba-ana); 
-            margin-bottom: 25px; 
-            padding-bottom: 15px; 
-        }
+        .ust-bolum { border-bottom: 1.5px solid var(--kba-ana); margin-bottom: 25px; padding-bottom: 15px; }
         h1 { font-size: 34px; margin: 0; letter-spacing: 6px; font-weight: 400; }
         .alt-baslik { font-size: 11px; letter-spacing: 1px; margin-top: 5px; }
         
         .ana-not {
-            font-size: 14px;
+            font-size: 13px;
             font-style: italic;
             color: #555;
             margin-bottom: 20px;
-            line-height: 1.6;
+            line-height: 1.5;
             background: #f1f5f3;
             padding: 15px;
             border-radius: 12px;
@@ -53,102 +50,43 @@
         }
 
         input { 
-            width: 100%; 
-            padding: 14px; 
-            margin: 15px 0; 
-            border: 1.5px solid #ddd; 
-            border-radius: 12px; 
-            box-sizing: border-box; 
-            font-size: 16px; 
+            width: 100%; padding: 14px; margin: 15px 0; border: 1.5px solid #ddd; 
+            border-radius: 12px; box-sizing: border-box; font-size: 16px; 
         }
         
         .btn-aksiyon { 
-            background: var(--kba-ana); 
-            color: white; 
-            border: none; 
-            padding: 18px; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            width: 100%; 
-            font-size: 17px; 
-            font-weight: 600; 
-            letter-spacing: 1px; 
-            transition: 0.3s; 
-        }
-        .btn-aksiyon:hover { background: #25614d; transform: translateY(-2px); }
-        
-        .analiz-sonuc { 
-            margin-top: 25px; 
-            padding: 20px; 
-            display: none; 
-            text-align: left; 
-            border-radius: 15px; 
-            border-left: 8px solid; 
-            animation: ortayaCik 0.6s ease; 
-            line-height: 1.7; 
+            background: var(--kba-ana); color: white; border: none; padding: 18px; 
+            border-radius: 12px; cursor: pointer; width: 100%; font-size: 17px; 
+            font-weight: 600; letter-spacing: 1px; transition: 0.3s; 
         }
         
+        .sonuc-panel { display: none; text-align: left; animation: ortayaCik 0.6s ease; }
+        
+        .kart {
+            padding: 15px; border-radius: 15px; margin-bottom: 15px; border-left: 8px solid;
+            line-height: 1.6; font-size: 15px;
+        }
+
+        .zihin-kart { background: #fdfefe; border-color: var(--kba-ana); }
+        .algi-kart { background: #f4f8fb; border-color: var(--dogru); }
+
         .tavsiye-box { 
-            margin-top: 15px; 
-            padding: 12px; 
-            background: rgba(255,255,255,0.7); 
-            border-radius: 8px; 
-            font-style: italic; 
-            font-size: 14px; 
-            color: #444; 
-            border: 1px dashed #ccc; 
-        }
-        
-        .uyari-notu { 
-            color: var(--uyari); 
-            font-weight: bold; 
-            font-size: 13px; 
-            margin-top: 15px; 
-            border-top: 1px solid #eee; 
-            padding-top: 10px; 
+            margin-top: 10px; padding: 10px; background: rgba(255,255,255,0.6); 
+            border-radius: 8px; font-style: italic; font-size: 13px; border: 1px dashed #ccc; 
         }
         
         .whatsapp-box { 
-            margin-top: 25px; 
-            padding: 15px; 
-            background: #e7f9ee; 
-            border-radius: 15px; 
-            display: none; 
-            border: 1px solid var(--whatsapp); 
-            animation: ortayaCik 0.8s ease; 
+            margin-top: 20px; padding: 15px; background: #e7f9ee; border-radius: 15px; 
+            border: 1px solid var(--whatsapp);
         }
         
         .btn-wa { 
-            background: var(--whatsapp); 
-            color: white; 
-            border: none; 
-            padding: 12px; 
-            border-radius: 10px; 
-            cursor: pointer; 
-            width: 100%; 
-            font-weight: bold; 
-            text-decoration: none; 
-            display: inline-block; 
-            margin-top: 10px; 
-            text-align: center; 
+            background: var(--whatsapp); color: white; padding: 12px; border-radius: 10px; 
+            text-decoration: none; display: block; margin-top: 10px; text-align: center; font-weight: bold;
         }
-        
-        @keyframes ortayaCik { 
-            from { opacity: 0; transform: translateY(10px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-        
-        .cikis-link { 
-            background:none; 
-            border:none; 
-            text-decoration:underline; 
-            cursor:pointer; 
-            color:#bbb; 
-            margin-top:25px; 
-            font-size: 13px; 
-        }
-        
-        .copyright { font-size: 10px; margin-top: 30px; color: #999; letter-spacing: 1px; }
+
+        @keyframes ortayaCik { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .copyright { font-size: 10px; margin-top: 30px; color: #999; }
     </style>
 </head>
 <body>
@@ -169,17 +107,22 @@
 
     <div id="islemEkrani" style="display:none;">
         <p id="karsilama" style="font-size: 18px; font-weight: 600;"></p>
-        <button class="btn-aksiyon" onclick="zihinAnaliziYap()">ZİHİN DÜNYAMI DENETLE</button>
+        <button class="btn-aksiyon" onclick="denetimYap()">DENETİMİ BAŞLAT</button>
         
-        <div id="analizKutusu" class="analiz-sonuc"></div>
-        
-        <div id="whatsappKutusu" class="whatsapp-box">
-            <div style="font-size: 13px; color: #1b4d3e; font-weight: bold;">🔍 Derinlemesine Analiz İstiyor musunuz?</div>
-            <div style="font-size: 12px; color: #555; margin-top: 5px;">Kişisel döngülerinizi keşfetmek ve bu yapıyı dönüştürmek için KBA Danışmanlık Hattı ile irtibata geçebilirsiniz.</div>
-            <a href="https://wa.me/905069763232" target="_blank" class="btn-wa">WhatsApp İle İletişime Geç</a>
-        </div>
+        <div id="sonucPanel" class="sonuc-panel">
+            <h4 style="margin: 20px 0 10px 0; border-bottom: 1px solid #eee;">ANALİZ SONUÇLARI</h4>
+            
+            <div id="zihinKart" class="kart"></div>
+            
+            <div id="algiKart" class="kart"></div>
 
-        <button class="cikis-link" onclick="location.reload()">Sistemden Çıkış Yap</button>
+            <div class="whatsapp-box">
+                <div style="font-size: 12px; color: #1b4d3e; font-weight: bold;">🔍 Hakikati Keşfetmeye Hazır mısınız?</div>
+                <div style="font-size: 11px; color: #555; margin-top: 5px;">Zihinsel döngülerinizi ve algı yönetiminizi uzman eşliğinde çözümlemek için bize ulaşın.</div>
+                <a href="https://wa.me/905069763232" target="_blank" class="btn-wa">WhatsApp Danışmanlık Hattı</a>
+            </div>
+            <center><button style="background:none; border:none; text-decoration:underline; cursor:pointer; color:#bbb; margin-top:20px;" onclick="location.reload()">Yeni Denetim</button></center>
+        </div>
     </div>
 
     <div class="copyright">© 2026 KBA - TÜM HAKLARI MAHFUZDUR</div>
@@ -200,66 +143,39 @@
     ];
 
     const zaaflar = {
-        1: { metin: "Olaylara düz mantıkla bakıyorsun.", tavsiye: "Gördüğünün ötesindeki hikmeti fark etmek için zihnini sakinleştir ve acele karar verme." },
-        2: { metin: "Çıkarcı ve kendi menfaatini gözeten bir zihin yapısındasın.", tavsiye: "Kendi yararından önce, bütünün hayrını gözetmek zihnindeki bu düğümü çözecektir." },
-        3: { metin: "Hırsızlık zannı; bir şeylerin çalınacağı hırsıyla bakıyorsun.", tavsiye: "Sana ait olanın senden gitmeyeceğini, rızkın ve emanetin sahibini hatırla." },
-        4: { metin: "Duygusal bir hayır beklentisiyle olayları tek taraflı yorumluyorsun.", tavsiye: "Beklentini insandan değil haktan yana tut; hayır, senin dilediğin değil, olanın içindedir." },
-        5: { metin: "Şer ve kötü olacak bakış açısıyla yaklaşıyorsun.", tavsiye: "Korkularını bir kenara bırak; zannını güzele çek ki gerçeklik de hayra dönüşsün." },
-        6: { metin: "'Ne derler' düşüncesi ve duygusal yoğunlukla bakıyorsun.", tavsiye: "İnsanların bakışını değil, kendi vicdanının sesini merkeze alarak özgürleş." },
-        7: { metin: "Hatalı bir zeminde, tek taraflı bir muhabbet arayışındasın.", tavsiye: "İlişkilerinde samimiyeti, yanlış beklentiler üzerine değil dürüstlük üzerine inşa et." }
+        1: "Olaylara düz mantıkla bakıyorsun.",
+        2: "Çıkarcı ve kendi menfaatini gözeten bir yapıdasın.",
+        3: "Hırsızlık zannı; bir şeylerin çalınacağı hırsıyla bakıyorsun.",
+        4: "Duygusal bir hayır beklentisiyle olayları tek taraflı yorumluyorsun.",
+        5: "Şer ve kötü olacak bakış açısıyla yaklaşıyorsun.",
+        6: "'Ne derler' düşüncesi ve duygusal yoğunlukla bakıyorsun.",
+        7: "Hatalı bir zeminde, tek taraflı bir muhabbet arayışındasın."
     };
 
     function sistemiBaslat() {
         let isim = document.getElementById('kullaniciAdi').value.trim().toLowerCase();
         if(!isim) return;
-        
-        if(db[isim]) {
-            ebcedDegeri = db[isim];
-        } else {
-            let sor = prompt(isim + " ismi için ebced değerini girin:");
-            if(!sor || isNaN(sor)) return;
+        if(db[isim]) ebcedDegeri = db[isim];
+        else {
+            let sor = prompt(isim + " için ebced değerini girin:");
+            if(!sor) return;
             ebcedDegeri = parseInt(sor);
         }
-
         document.getElementById('girisEkrani').style.display = 'none';
         document.getElementById('islemEkrani').style.display = 'block';
-        document.getElementById('karsilama').innerText = "Hoş Geldin, " + isim.toUpperCase();
+        document.getElementById('karsilama').innerText = "Selam, " + isim.toUpperCase();
     }
 
-    function zihinAnaliziYap() {
+    function denetimYap() {
         const suAn = new Date();
-        const kutu = document.getElementById('analizKutusu');
-        const waKutusu = document.getElementById('whatsappKutusu');
+        const sira = (suAn.getDay() + suAn.getHours()) % 7;
+        const gezegen = hikmetler[sira];
         
-        let sira = (suAn.getDay() + suAn.getHours()) % 7;
-        let gezegen = hikmetler[sira];
+        // 1. ZİHİN ANALİZİ (Mevcut Sistem)
         let evre = (suAn.getSeconds() % 2 === 0) ? "Olur" : "Sıkıntılı";
         let mod7 = (ebcedDegeri + gezegen.ebced) % 7;
         if(mod7 === 0) mod7 = 7;
-
-        kutu.style.display = "block";
-        waKutusu.style.display = "block";
-
+        
+        const zKart = document.getElementById('zihinKart');
         if(evre === "Olur") {
-            kutu.style.backgroundColor = "#effaf1"; 
-            kutu.style.borderColor = "#27ae60";
-            kutu.innerHTML = `
-                <strong style="color:#1b4d3e">ZİHİN DURUMU (Dengeli):</strong><br>
-                Şu an zihnindeki işleyiş mantığı: <b>"${gezegen.marifet}"</b> ilkesiyle uyumlu ve dengeli.
-            `;
-        } else {
-            kutu.style.backgroundColor = "#fff9f0"; 
-            kutu.style.borderColor = "#e67e22";
-            kutu.innerHTML = `
-                <strong style="color:#d35400">ZİHİN DURUMU (Hatalı Bakış):</strong><br>
-                Zihnin şu an <b>"${zaaflar[mod7].metin}"</b> tuzağına düşmüş durumda.<br>
-                <div class="tavsiye-box"><b>Yapıcı Öneri:</b> ${zaaflar[mod7].tavsiye}</div>
-                <div class="uyari-notu">Duygusal yaklaşımlar sorunu çözmez, aksine büyütür. Lütfen itidalin getirisi olan erdemli davranışları tercih edin.</div>
-                <br><strong>DÜZELTME İLKESİ:</strong> ${gezegen.marifet}
-            `;
-        }
-    }
-</script>
-</body>
-</html>
-
+            zKart
