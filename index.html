@@ -10,7 +10,7 @@
             --kba-beyaz: #ffffff; 
             --kba-zemin: #f8faf8; 
             --whatsapp: #25d366; 
-            --yalan: #c0392b;
+            --sorgu: #8e44ad;
             --dogru: #2980b9;
         }
         body { 
@@ -35,7 +35,7 @@
         }
         .ust-bolum { border-bottom: 2px solid var(--kba-ana); margin-bottom: 25px; padding-bottom: 15px; }
         h1 { font-size: 38px; margin: 0; letter-spacing: 8px; font-weight: 400; }
-        .alt-baslik { font-size: 12px; letter-spacing: 2px; margin-top: 5px; opacity: 0.8; }
+        .alt-baslik { font-size: 11px; letter-spacing: 2px; margin-top: 5px; opacity: 0.8; }
         
         .vizyon-notu {
             font-size: 14px;
@@ -57,10 +57,9 @@
         
         .btn-aksiyon { 
             background: var(--kba-ana); color: white; border: none; padding: 20px; 
-            border-radius: 12px; cursor: pointer; width: 100%; font-size: 18px; 
+            border-radius: 12px; cursor: pointer; width: 100%; font-size: 17px; 
             font-weight: 600; letter-spacing: 1px; transition: 0.3s; 
         }
-        .btn-aksiyon:hover { background: #25614d; transform: translateY(-2px); }
         
         .sonuc-ekrani { display: none; text-align: left; animation: akis 0.6s ease; }
         
@@ -88,7 +87,6 @@
         }
 
         @keyframes akis { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        .copyright { font-size: 11px; margin-top: 35px; color: #aaa; letter-spacing: 1px; }
     </style>
 </head>
 <body>
@@ -103,31 +101,31 @@
         <div class="vizyon-notu">
             "Anlamak bir aşama, kabullenmek bir başka aşamadır. Direnci bırak, hakikate teslim ol ki itidal seni şifalandırsın."
         </div>
-        <input type="text" id="isimGirdisi" placeholder="Lütfen İsminizi Giriniz...">
-        <button class="btn-aksiyon" onclick="sistemiAc()">SİSTEME GİRİŞ YAP</button>
+        <input type="text" id="isimGirdisi" placeholder="İsminizi Yazın...">
+        <button class="btn-aksiyon" onclick="sistemiAc()">DENETİMİ BAŞLAT</button>
     </div>
 
     <div id="denetimMerkezi" style="display:none;">
-        <p id="selamlama" style="font-size: 20px; font-weight: 600; margin-bottom: 20px;"></p>
-        <button class="btn-aksiyon" onclick="tamDenetim()">BÜTÜNSEL DENETİMİ BAŞLAT</button>
+        <p id="selamlama" style="font-size: 18px; font-weight: 600; margin-bottom: 20px;"></p>
+        <button class="btn-aksiyon" onclick="tamDenetim()">TEFEKKÜR AYNASINA BAK</button>
         
         <div id="sonucAlani" class="sonuc-ekrani">
-            <h3 style="margin: 25px 0 15px 0; font-size: 16px; letter-spacing: 1px; color: #777; text-align: center;">DENETİM RAPORU</h3>
+            <h3 style="margin: 25px 0 10px 0; font-size: 14px; color: #777; text-align: center; letter-spacing: 1px;">İÇSEL REHBERLİK RAPORU</h3>
             
             <div id="zihinRapor" class="kart zihin-kart"></div>
             <div id="algiRapor" class="kart algi-kart"></div>
 
             <div class="whatsapp-alan">
-                <div style="font-size: 14px; color: #1b4d3e; font-weight: bold;">Derinlemesine Bireysel Analiz</div>
-                <div style="font-size: 12px; color: #666; margin-top: 6px;">Zihinsel döngülerinizi ve algı haritanızı KBA uzmanlığı ile çözümlemek için danışmanlık hattımıza yazın.</div>
-                <a href="https://wa.me/905069763232" target="_blank" class="btn-wa">WhatsApp Danışmanlık Hattı</a>
+                <div style="font-size: 14px; color: #1b4d3e; font-weight: bold;">Farkındalığı Dönüştürün</div>
+                <div style="font-size: 12px; color: #666; margin-top: 6px;">Bu verilerin hayatınızdaki karşılığını uzman eşliğinde değerlendirmek için danışmanlık hattımıza yazabilirsiniz.</div>
+                <a href="https://wa.me/905069763232" target="_blank" class="btn-wa">KBA Danışmanlık Hattı</a>
             </div>
             
-            <center><button style="background:none; border:none; text-decoration:underline; cursor:pointer; color:#ccc; margin-top:25px; font-size:12px;" onclick="location.reload()">SİSTEMİ SIFIRLA</button></center>
+            <center><button style="background:none; border:none; text-decoration:underline; cursor:pointer; color:#ccc; margin-top:25px; font-size:12px;" onclick="location.reload()">YENİ DENETİM</button></center>
         </div>
     </div>
 
-    <div class="copyright">© 2026 KBA - TÜM HAKLARI MAHFUZDUR</div>
+    <div class="copyright" style="font-size:10px; margin-top:30px; color:#aaa;">© 2026 KBA - TÜM HAKLARI MAHFUZDUR</div>
 </div>
 
 <script>
@@ -145,13 +143,13 @@
     ];
 
     const zaafTanimi = {
-        1: "Olaylara düz mantıkla bakıyorsun.",
-        2: "Çıkarcı ve kendi menfaatini gözeten bir yapıdasın.",
-        3: "Hırsızlık zannı; bir şeylerin çalınacağı hırsıyla bakıyorsun.",
-        4: "Duygusal bir hayır beklentisiyle olayları tek taraflı yorumluyorsun.",
-        5: "Şer ve kötü olacak bakış açısıyla yaklaşıyorsun.",
-        6: "'Ne derler' düşüncesi ve duygusal yoğunlukla bakıyorsun.",
-        7: "Hatalı bir zeminde, tek taraflı bir muhabbet arayışındasın."
+        1: "Olaylara düz mantıkla bakıyor olabilir misiniz?",
+        2: "Şu an kendi menfaatinizi önceliyor olma ihtimaliniz nedir?",
+        3: "Zihninizde bir şeylerin eksileceği veya çalınacağı kaygısı mı var?",
+        4: "Duygusal bir beklentiyle olayları tek taraflı yorumluyor olabilir misiniz?",
+        5: "Olumsuz sonuçlara odaklanmak sizi hakikatten uzaklaştırıyor olabilir mi?",
+        6: "Başkalarının ne düşündüğüne dair bir yoğunluk mu yaşıyorsunuz?",
+        7: "İlişkilerinizde hatalı bir zeminde muhabbet arayışında mısınız?"
     };
 
     function sistemiAc() {
@@ -165,7 +163,7 @@
         }
         document.getElementById('baslangic').style.display = 'none';
         document.getElementById('denetimMerkezi').style.display = 'block';
-        document.getElementById('selamlama').innerText = "Hoş Geldiniz, " + n.toUpperCase();
+        document.getElementById('selamlama').innerText = "Selam, " + n.toUpperCase();
     }
 
     function tamDenetim() {
@@ -173,30 +171,27 @@
         const f = felekler[(d.getDay() + d.getHours()) % 7];
         const t = userEbced + f.e;
         
-        // --- 1. ZİHİN DENETİMİ ---
         const zR = document.getElementById('zihinRapor');
+        const aR = document.getElementById('algiRapor');
+        
         let isSikintili = (d.getSeconds() % 2 !== 0);
         let m7 = (t % 7 === 0) ? 7 : (t % 7);
 
         if(!isSikintili) {
             zR.style.borderColor = "#27ae60";
-            zR.innerHTML = `<b>🧠 ZİHİN: DENGELİ (OLUR)</b><br><small>Zihniniz şu an hikmetli bir akışta. <br><b>İlkeniz:</b> ${f.marifet}</small>`;
+            zR.innerHTML = `<b>🧠 ZİHİN REHBERİ:</b><br><small>Şu an zihniniz berrak ve geniş bir bakış açısına sahip. Bu dengeyi korumak için şu ilkeyi rehber edinebilirsiniz: <b>${f.marifet}</b></small>`;
         } else {
             zR.style.borderColor = "#e67e22";
-            zR.innerHTML = `<b>🧠 ZİHİN: KISITLI (ZAaf)</b><br><small>Zihin şu an şu noktaya takıldı: <b>${zaafTanimi[m7]}</b></small><div class="tavsiye-vurgu"><b>Düzeltme:</b> ${f.marifet}</div>`;
+            zR.innerHTML = `<b>🧠 ZİHİN REHBERİ:</b><br><small>Zihniniz şu an bir düğümün etkisinde kalmış olabilir: <b>"${zaafTanimi[m7]}"</b><br><br>Bakışınızı şu yöne çevirmek size yeni bir kapı açacaktır: <b>${f.marifet}</b></small>`;
         }
 
-        // --- 2. ALGI TANIMI (Yalan/Doğru Haber) ---
-        const aR = document.getElementById('algiRapor');
-        let isYalan = (t === 0 || t % 2 === 0);
-        let isHakikat = (t % 2 !== 0 || t % 10 === 5);
-
-        if(isYalan) {
-            aR.style.borderColor = "#c0392b";
-            aR.innerHTML = `<b>👁️ ALGI: İLLÜZYON / MANİPÜLASYON</b><br><small>Dikkat! Maruz kaldığınız bilgi veya olayda "Yalan Haber" etkisi baskın. Yanlış mana yüklememeye özen gösterin.</small>`;
+        let isRiskli = (t === 0 || t % 2 === 0);
+        if(isRiskli) {
+            aR.style.borderColor = "#8e44ad";
+            aR.innerHTML = `<b>👁️ ALGI ANALİZİ:</b><br><small>Şu an maruz kaldığınız bilgilerin zihninizde oluşturduğu 'mana'yı tekrar tartmanız gerekebilir. Duygusal yoğunluk, gerçeği olduğundan farklı görmenize sebep olabilir mi? Sükûneti tercih edin.</small>`;
         } else {
             aR.style.borderColor = "#2980b9";
-            aR.innerHTML = `<b>👁️ ALGI: HAKİKAT / DOĞRU</b><br><small>Algılarınız şu an gerçeğe açık. Gelen bilgi hakikat temelli görünüyor; itidalli bir şekilde kabul edebilirsiniz.</small>`;
+            aR.innerHTML = `<b>👁️ ALGI ANALİZİ:</b><br><small>Algılarınızın hakikatle örtüşmeye meyilli olduğu bir döngüdesiniz. Gelen bilgiyi sağduyu ile işleyebilir, itidalli adımlar atmak için bu netliği kullanabilirsiniz.</small>`;
         }
 
         document.getElementById('sonucAlani').style.display = "block";
@@ -204,3 +199,4 @@
 </script>
 </body>
 </html>
+
