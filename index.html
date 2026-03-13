@@ -14,13 +14,14 @@
         .vizyon-notu { font-size: 16px; font-style: italic; color: #444; margin-bottom: 25px; line-height: 1.6; background: #f4faf7; padding: 20px; border-radius: 15px; border-left: 5px solid var(--kba-ana); text-align: left; }
         input { width: 100%; padding: 20px; margin: 12px 0; border: 2px solid #ddd; border-radius: 18px; font-size: 18px; outline: none; box-sizing: border-box; }
         .btn-aksiyon { background: var(--kba-ana); color: white; border: none; padding: 22px; border-radius: 20px; cursor: pointer; width: 100%; font-size: 20px; font-weight: 700; transition: 0.3s; box-shadow: 0 6px 20px rgba(27,77,62,0.3); }
-        .btn-guven { background: none; color: var(--altin); border: 1px solid var(--altin); padding: 10px; border-radius: 12px; cursor: pointer; margin-top: 15px; font-size: 14px; width: 100%; font-weight: bold; }
+        .btn-guven { background: none; color: var(--altin); border: 2px solid var(--altin); padding: 12px; border-radius: 15px; cursor: pointer; margin-top: 15px; font-size: 15px; width: 100%; font-weight: bold; transition: 0.3s; }
+        .btn-guven:hover { background: var(--altin); color: white; }
         .kart { padding: 25px; border-radius: 25px; margin-bottom: 25px; text-align: left; background: #fff; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
         .baslik-etiket { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; display: block; letter-spacing: 1.5px; }
         .hikmet-butonu { display: flex; align-items: center; justify-content: space-between; background: #fffdf5; border: 2px solid var(--altin); color: #745a03; padding: 18px; border-radius: 15px; cursor: pointer; margin-top: 15px; font-size: 16px; font-weight: bold; }
-        .whatsapp-link { text-decoration:none; color: white; background: var(--whatsapp); padding: 20px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: 18px; margin-top: 25px; }
+        .whatsapp-link { text-decoration:none; color: white; background: var(--whatsapp); padding: 20px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: 18px; margin-top: 25px; box-shadow: 0 5px 15px rgba(37,211,102,0.3); }
         .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(10px); align-items: center; justify-content: center; overflow-y: auto; padding: 20px; }
-        .modal-icerik { background: white; padding: 35px; border-radius: 30px; width: 100%; max-width: 400px; max-height: 85vh; overflow-y: auto; text-align: left; }
+        .modal-icerik { background: white; padding: 35px; border-radius: 30px; width: 100%; max-width: 400px; max-height: 85vh; overflow-y: auto; text-align: left; position: relative; }
         .manifesto-madde { border-left: 4px solid var(--altin); padding-left: 15px; margin-bottom: 20px; }
         .manifesto-madde h4 { color: var(--altin); margin: 0 0 5px 0; font-size: 16px; }
         .manifesto-madde p { margin: 0; font-size: 14px; line-height: 1.5; color: #555; }
@@ -35,7 +36,7 @@
         <div class="vizyon-notu">"Mizanın hassasiyeti, vaktin hakikatidir."</div>
         <input type="text" id="isimGirdisi" placeholder="İsminizi Yazın...">
         <button class="btn-aksiyon" onclick="sistemiAc()">KONUMU AL VE BAŞLAT</button>
-        <button class="btn-guven" onclick="manifestoAc()">🗝️ Güven ve Hakikat Manifestosu</button>
+        <button class="btn-guven" onclick="manifestoAc()">🗝️ GÜVEN VE HAKİKAT MANİFESTOSU</button>
     </div>
 
     <div id="denetimMerkezi" style="display:none;">
@@ -46,7 +47,7 @@
         <div id="sonucAlani" style="display:none; margin-top: 35px;">
             <div class="kart" style="border-left: 8px solid var(--uyari);"><span class="baslik-etiket" style="color: var(--uyari);">🧠 Zihin Rehberi</span><div id="zihinMetin" style="font-size: 18px; line-height: 1.6;"></div><div id="zaafButonAlani"></div><div id="cikisButonAlani"></div></div>
             <div class="kart" style="border-left: 8px solid #2980b9;"><span class="baslik-etiket" style="color: #2980b9;">👁️ Algı Analizi</span><div id="algiMetin" style="font-size: 18px; line-height: 1.6;"></div></div>
-            <a id="waLink" href="#" target="_blank" class="whatsapp-link">🟢 KBA uzmanina Yorumlat</a>
+            <a id="waLink" href="#" target="_blank" class="whatsapp-link">🟢 KBA Uzmanına Yorumlat</a>
             <button class="btn-aksiyon" style="background:#e0e0e0; color:#666; margin-top:20px; font-size: 16px; padding: 15px;" onclick="location.reload()">🔄 Yeni Analiz Başlat</button>
         </div>
     </div>
@@ -57,21 +58,21 @@
         <h2 style="color:var(--kba-ana); margin-top:0;">🛡️ Güven Manifestosu</h2>
         <div class="manifesto-madde">
             <h4>1. Fal Değil, Frekanstır</h4>
-            <p>İsminizin Ebced değeri ile anlık coğrafi konumunuzun matematiksel kesişimidir.</p>
+            <p>Sistem, isminizin Ebced değeri ile o anki gökyüzü döngüsünün matematiksel bir kesişimidir.</p>
         </div>
         <div class="manifesto-madde">
             <h4>2. Gelecek Değil, Şimdidir</h4>
-            <p>Sistem kehanette bulunmaz; şu anki zihinsel durumunuza ayna tutar.</p>
+            <p>KBA kehanette bulunmaz; mevcut zihinsel düğümlerinize ayna tutarak farkındalık sağlar.</p>
         </div>
         <div class="manifesto-madde">
-            <h4>3. İtiraz Hakkı Sizdedir</h4>
-            <p>Sistem size bir şey dikte etmez. Eğer çıkan sonuç kalbinize hitap ediyorsa üzerinde tefekkür etmeniz içindir.</p>
+            <h4>3. Bilim ve Kadim Bilgi</h4>
+            <p>Hesaplamalarımız astronomik veriler ve binlerce yıllık kadim ilimler üzerine inşa edilmiştir.</p>
         </div>
         <div class="manifesto-madde">
-            <h4>4. Akademik Güvence</h4>
-            <p>Arkasında KBA tecrübesi vardır. Takıldığınız yerde Kendilik Bilinci Akademisi uzmanlari her zaman yanınızdadır.</p>
+            <h4>4. Uzman Rehberliği</h4>
+            <p>Uygulama bir başlangıçtır; derinlemesine analiz için KBA uzmanlarımızla her an iletişime geçebilirsiniz.</p>
         </div>
-        <button class="btn-aksiyon" style="padding:12px; font-size:16px;" onclick="manifestoKapat()">ANLADIM</button>
+        <button class="btn-aksiyon" style="padding:15px; font-size:16px;" onclick="manifestoKapat()">ANLADIM, DEVAM ET</button>
     </div>
 </div>
 
@@ -152,7 +153,7 @@
 
         document.getElementById('algiMetin').innerHTML = (t % 2 === 0) ? `Maruz kaldığınız durum <b>yanıltıcı bir algı</b> içeriyor olabilir.` : `Algılarınız <b>hakikatle örtüşüyor</b>. Sağduyu ile ilerleyin.`;
         
-        let msg = `Selam KBA uzmani, ben ${userName.toUpperCase()}. KBA Denetimi: Saat ${gezegenSaatBilgisi}, ${waDetay}`;
+        let msg = `Selam KBA Uzmanı, ben ${userName.toUpperCase()}. KBA Denetimi yaptım. Saat: ${gezegenSaatBilgisi}, Analiz: ${waDetay} Yorumunuzu bekliyorum.`;
         document.getElementById('waLink').href = `https://wa.me/905333880118?text=${encodeURIComponent(msg)}`;
     }
 
