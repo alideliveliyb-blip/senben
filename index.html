@@ -2,95 +2,35 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KBA - Kusursuz Mizan v9.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>KBA - Nihai Mizan v9.2</title>
     <style>
-        :root { 
-            --kba-ana: #1b4d3e; 
-            --kba-beyaz: #ffffff; 
-            --kba-zemin: #f0f4f2; 
-            --whatsapp: #25d366; 
-            --altin: #d4af37; 
-            --uyari: #e67e22; 
-        }
+        :root { --kba-ana: #1b4d3e; --kba-beyaz: #ffffff; --kba-zemin: #f0f4f2; --whatsapp: #25d366; --altin: #d4af37; --uyari: #e67e22; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: var(--kba-zemin); margin: 0; color: var(--kba-ana); overflow-y: auto; -webkit-overflow-scrolling: touch; }
         
-        /* Sayfanın genel kaydırılabilirliği sağlandı */
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            background-color: var(--kba-zemin); 
-            display: flex; 
-            justify-content: center; 
-            align-items: flex-start; /* Üstten başla */
-            min-height: 100vh; 
-            margin: 0; 
-            color: var(--kba-ana); 
-            overflow-y: auto; /* Kaydırma aktif */
-            padding: 20px 0;
-        }
-        
-        .kapsayici { 
-            background: var(--kba-beyaz); 
-            width: 92%; 
-            max-width: 480px; 
-            border-radius: 40px; 
-            box-shadow: 0 30px 70px rgba(0,0,0,0.15); 
-            padding: 40px; 
-            text-align: center; 
-            border: 1px solid rgba(27,77,62,0.1); 
-            display: none; 
-            margin-top: 20px;
-            margin-bottom: 40px;
-        }
-
+        .kapsayici { background: var(--kba-beyaz); width: 92%; max-width: 480px; border-radius: 40px; box-shadow: 0 30px 70px rgba(0,0,0,0.15); padding: 30px; text-align: center; border: 1px solid rgba(27,77,62,0.1); display: none; margin: 20px auto 40px auto; }
         .ust-bolum { border-bottom: 3px solid var(--kba-ana); margin-bottom: 25px; padding-bottom: 15px; }
-        h1 { font-size: 42px; margin: 0; letter-spacing: 8px; font-weight: 300; }
+        h1 { font-size: clamp(30px, 8vw, 42px); margin: 0; letter-spacing: 8px; font-weight: 300; }
         .alt-baslik { font-size: 12px; letter-spacing: 4px; opacity: 0.8; font-weight: bold; }
         
         input { width: 100%; padding: 20px; margin: 12px 0; border: 2px solid #ddd; border-radius: 18px; font-size: 18px; outline: none; box-sizing: border-box; }
-        .btn-aksiyon { background: var(--kba-ana); color: white; border: none; padding: 22px; border-radius: 20px; cursor: pointer; width: 100%; font-size: 20px; font-weight: 700; transition: 0.3s; box-shadow: 0 6px 20px rgba(27,77,62,0.3); }
+        .btn-aksiyon { background: var(--kba-ana); color: white; border: none; padding: 20px; border-radius: 20px; cursor: pointer; width: 100%; font-size: 18px; font-weight: 700; transition: 0.3s; box-shadow: 0 6px 20px rgba(27,77,62,0.3); }
         
-        /* Kart Yapıları */
         .kart { padding: 25px; border-radius: 25px; margin-bottom: 25px; text-align: left; background: #fff; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-        .baslik-etiket { font-size: 14px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; display: block; letter-spacing: 1.5px; }
+        .baslik-etiket { font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; display: block; letter-spacing: 1.5px; }
         .hikmet-butonu { display: flex; align-items: center; justify-content: space-between; background: #fffdf5; border: 2px solid var(--altin); color: #745a03; padding: 18px; border-radius: 15px; cursor: pointer; margin-top: 15px; font-size: 16px; font-weight: bold; text-decoration: none; }
         .whatsapp-link { text-decoration:none; color: white; background: var(--whatsapp); padding: 20px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: 18px; margin-top: 25px; }
         
-        /* === INTRO EKRANI DÜZENLEME === */
-        #introEkran { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; box-sizing: border-box; }
-        
-        #manifestoKart { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 35px; 
-            width: 100%; 
-            max-width: 420px; 
-            text-align: left; 
-            display: flex; 
-            flex-direction: column;
-            min-height: auto; /* Boşluk sorunu için auto yapıldı */
-        }
-        
-        #maddeKapsayici { position: relative; min-height: 180px; margin-bottom: 10px; }
-        
-        .manifesto-madde { 
-            border-left: 5px solid var(--altin); 
-            padding-left: 20px; 
-            position: absolute; 
-            width: 100%; 
-            opacity: 0; 
-            transition: 0.6s; 
-            visibility: hidden; 
-            box-sizing: border-box; 
-        }
-        
+        /* INTRO MODAL */
+        #introEkran { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; box-sizing: border-box; }
+        #manifestoKart { background: white; padding: 30px; border-radius: 35px; width: 100%; max-width: 420px; text-align: left; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between; }
+        .manifesto-madde { border-left: 5px solid var(--altin); padding-left: 20px; position: absolute; width: calc(100% - 60px); opacity: 0; transition: 0.6s; visibility: hidden; }
         .manifesto-madde.aktif { opacity: 1; visibility: visible; }
-        .manifesto-madde h4 { color: var(--altin); margin: 0 0 10px 0; font-size: 22px; font-weight: 800; }
-        .manifesto-madde p { margin: 0; font-size: 18px; line-height: 1.6; color: #333; }
-        
-        #btnIntroDevam { margin-top: 20px; opacity: 0; visibility: hidden; transition: 0.5s; }
+        .manifesto-madde h4 { color: var(--altin); margin: 0 0 10px 0; font-size: 20px; font-weight: 800; }
+        .manifesto-madde p { margin: 0; font-size: 16px; line-height: 1.6; color: #333; }
+        #btnIntroDevam { opacity: 0; visibility: hidden; transition: 0.5s; }
         #btnIntroDevam.aktif { opacity: 1; visibility: visible; }
 
-        /* Modal Düzeltme */
         .modal { display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 20px; }
         .modal-icerik { background: white; padding: 30px; border-radius: 25px; width: 100%; max-width: 380px; }
     </style>
@@ -100,11 +40,11 @@
 <div id="introEkran">
     <div id="manifestoKart">
         <h2 style="color:var(--kba-ana); text-align:center; margin-top:0;">🛡️ Güven Manifestosu</h2>
-        <div id="maddeKapsayici">
-            <div class="manifesto-madde aktif"><h4>1. Fal Değil, Frekanstır</h4><p>Sistem, isminizin Ebced değeri ile o anki gökyüzü döngüsünün matematiksel bir kesişimidir.</p></div>
-            <div class="manifesto-madde"><h4>2. Gelecek Değil, Şimdidir</h4><p>KBA kehanette bulunmaz; mevcut zihinsel düğümlerinize ayna tutarak farkındalık sağlar.</p></div>
-            <div class="manifesto-madde"><h4>3. Bilim ve Kadim Bilgi</h4><p>Hesaplamalarımız astronomik veriler ve binlerce yıllık kadim ilimler üzerine inşa edilmiştir.</p></div>
-            <div class="manifesto-madde"><h4>4. Uzman Rehberliği</h4><p>Uygulama bir başlangıçtır; derinlemesine analiz için KBA uzmanlarımızla her an iletişime geçebilirsiniz.</p></div>
+        <div id="maddeKapsayici" style="position:relative; flex-grow:1;">
+            <div class="manifesto-madde aktif"><h4>1. Fal Değil, Frekanstır</h4><p>Sistem, isminizin Ebced değeri ile gökyüzü döngüsünün matematiksel kesişimidir.</p></div>
+            <div class="manifesto-madde"><h4>2. Gelecek Değil, Şimdidir</h4><p>KBA kehanette bulunmaz; zihinsel düğümlerinize ayna tutarak farkındalık sağlar.</p></div>
+            <div class="manifesto-madde"><h4>3. Bilim ve Kadim Bilgi</h4><p>Hesaplamalarımız astronomik veriler ve kadim ilimler üzerine inşa edilmiştir.</p></div>
+            <div class="manifesto-madde"><h4>4. Uzman Rehberliği</h4><p>Derinlemesine analiz için KBA uzmanlarımızla her an iletişime geçebilirsiniz.</p></div>
         </div>
         <button id="btnIntroDevam" class="btn-aksiyon" onclick="introKapat()">ANLADIM, DEVAM ET</button>
     </div>
@@ -137,28 +77,44 @@
     let userEbced = 0; let userName = ""; let gezegenSaatBilgisi = ""; let gSaatiNo = 0;
     const sabitler = { "süleyman": 191, "emine": 106, "derya": 215, "yasemin hafize": 257 };
     const gezegenler = ["Zuhal", "Müşteri", "Merih", "Şems", "Zühre", "Utarit", "Kamer"];
-    const felekler = [
-        {kavram: "Yetim Hakkı", marifet:"Yetim hakkını korumalısın.", e:400, desc: "Savunmasız kalmış gerçeği korumaktır."},
-        {kavram: "Tevazu", marifet:"Ana babaya tevazu ile yaklaşmalısın.", e:441, desc: "Köklerine saygın, dallarının yükselişini belirler."},
-        {kavram: "Doğruluk", marifet:"Dosdoğru hareket etmelisin.", e:131, desc: "Eğilip bükülen zihin gerçeği taşıyamaz."},
-        {kavram: "İnsan Hakkı", marifet:"İnsanların hakkını korumalısın.", e:566, desc: "Muhatabının sınırlarına saygı duymak."},
-        {kavram: "İnce Fikir", marifet:"İnce fikirli olmalısın.", e:444, desc: "Olayın içindeki letafeti fark et."},
-        {kavram: "Emanet", marifet:"Emanete riayet etmelisin.", e:566, desc: "Zaman ve kalp sana emanettir."},
-        {kavram: "Akıbet", marifet:"İşin sonunu düşünmelisin.", e:496, desc: "Anlık öfke hapsinden çık, sonunu hayal et."}
-    ];
-    const zaafTanimi = { 1: {kavram: "Düz Mantık", tam: "Olaylara düz mantıkla mı bakıyorsunuz?", desc: "Gördüğün duvar yolun sonu değil; yöntemin yanlışlığıdır."}, 2: {kavram: "Nefis", tam: "Kendi menfaatinizi mi önceliyorsunuz?", desc: "Bütünün hayrını görmeyen kazanç kayıptır."}, 3: {kavram: "Kaygı", tam: "Eksilme kaygısı mı yaşıyorsunuz?", desc: "Korku hakikatin perdesidir."}, 4: {kavram: "Beklenti", tam: "Duygusal bir beklenti içinde misiniz?", desc: "Beklenti geleceğe atılmış bir kancadır."}, 5: {kavram: "Korku", tam: "Olumsuz sonuçlara mı odaklısınız?", desc: "Karanlık sadece ışığın yokluğudur."}, 6: {kavram: "Elalem", tam: "Başkaları ne der diye mi duruyorsunuz?", desc: "Zihnini başkalarının gözleriyle doldurmuşsun."}, 7: {kavram: "Zemin", tam: "Hatalı bir zeminde mi muhabbet arıyorsunuz?", desc: "Önce niyetini düzelt."} };
+    const gunBaslangicGezegeni = [3, 6, 2, 5, 1, 4, 0]; // Pazar(3)...Cumartesi(0)
+    
+    // NİHAİ ZAMAN MOTORU (Dinamik Hesaplama)
+    function hesaplaHassasSaat() {
+        const d = new Date();
+        const gun = d.getDay();
+        const simdi = d.getHours() + d.getMinutes()/60;
+        
+        // Mevsimsel yaklaşık gün doğumu/batımı (Kalıcı çözüm için dinamik eşik)
+        const ay = d.getMonth();
+        let sunrise = 7 - (ay >= 3 && ay <= 8 ? 1 : 0); // Yazın daha erken
+        let sunset = 18 + (ay >= 3 && ay <= 8 ? 1.5 : 0); // Yazın daha geç
+        
+        let isGunduz = simdi >= sunrise && simdi < sunset;
+        let toplamSure = isGunduz ? (sunset - sunrise) : (24 - (sunset - sunrise));
+        let gecenSure = isGunduz ? (simdi - sunrise) : (simdi < sunrise ? simdi + (24-sunset) : simdi - sunset);
+        
+        let dilimBoyu = toplamSure / 12;
+        gSaatiNo = Math.floor(gecenSure / dilimBoyu);
+        if (gSaatiNo > 11) gSaatiNo = 11;
 
+        let baslangicGezIdx = gunBaslangicGezegeni[gun];
+        let suankiGezIdx = (baslangicGezIdx + gSaatiNo) % 7;
+        gezegenSaatBilgisi = gezegenler[suankiGezIdx];
+    }
+
+    // MANİFESTO DÖNGÜSÜ
     const maddeler = document.querySelectorAll('.manifesto-madde');
-    let index = 0;
-    function manifestoDongusu() {
-        if (index < maddeler.length - 1) {
-            maddeler[index].classList.remove('aktif');
-            index++;
-            maddeler[index].classList.add('aktif');
-            setTimeout(manifestoDongusu, 3000);
+    let mIndex = 0;
+    function manifestoAkis() {
+        if (mIndex < maddeler.length - 1) {
+            maddeler[mIndex].classList.remove('aktif');
+            mIndex++;
+            maddeler[mIndex].classList.add('aktif');
+            setTimeout(manifestoAkis, 3000);
         } else { document.getElementById('btnIntroDevam').classList.add('aktif'); }
     }
-    window.onload = () => setTimeout(manifestoDongusu, 3000);
+    window.onload = () => setTimeout(manifestoAkis, 2500);
 
     function introKapat() { 
         document.getElementById('introEkran').style.opacity = '0';
@@ -172,24 +128,24 @@
         userName = document.getElementById('isimGirdisi').value.trim().toLowerCase();
         if(!userName) return;
         userEbced = sabitler[userName] || 100;
-        hesaplaHassasSaat();
+        hesaplaHassasSaat(); // Tam burada dinamik zamanı çekiyor
         document.getElementById('baslangicEkrani').style.display = 'none';
         document.getElementById('denetimMerkezi').style.display = 'block';
         document.getElementById('selamlama').innerText = "Selam, " + userName.toUpperCase();
         document.getElementById('saatBilgi').innerText = "📍 Şu an " + gezegenSaatBilgisi + " Saatindeyiz";
     }
 
-    function hesaplaHassasSaat() {
-        const d = new Date();
-        const gunBaslangicGezegeni = [3, 6, 2, 5, 1, 4, 0];
-        let simdi = d.getHours() + d.getMinutes()/60;
-        let sunrise = 6.5, sunset = 18.5;
-        let isGunduz = simdi >= sunrise && simdi < sunset;
-        let dilim = isGunduz ? (sunset - sunrise)/12 : (24 - (sunset - sunrise))/12;
-        let gecen = isGunduz ? (simdi - sunrise) : (simdi < sunrise ? simdi + (24-sunset) : simdi - sunset);
-        gSaatiNo = Math.floor(gecen / dilim);
-        gezegenSaatBilgisi = gezegenler[(gunBaslangicGezegeni[d.getDay()] + gSaatiNo) % 7];
-    }
+    const felekler = [
+        {kavram: "Yetim Hakkı", marifet:"Yetim hakkını korumalısın.", e:400, desc: "Savunmasız kalmış gerçeği korumaktır."},
+        {kavram: "Tevazu", marifet:"Ana babaya tevazu ile yaklaşmalısın.", e:441, desc: "Köklerine saygın, dallarının yükselişini belirler."},
+        {kavram: "Doğruluk", marifet:"Dosdoğru hareket etmelisin.", e:131, desc: "Eğilip bükülen zihin gerçeği taşıyamaz."},
+        {kavram: "İnsan Hakkı", marifet:"İnsanların hakkını korumalısın.", e:566, desc: "Muhatabının sınırlarına saygı duymak."},
+        {kavram: "İnce Fikir", marifet:"İnce fikirli olmalısın.", e:444, desc: "Olayın içindeki letafeti fark et."},
+        {kavram: "Emanet", marifet:"Emanete riayet etmelisin.", e:566, desc: "Zaman ve kalp sana emanettir."},
+        {kavram: "Akıbet", marifet:"İşin sonunu düşünmelisin.", e:496, desc: "Anlık öfke hapsinden çık, sonunu hayal et."}
+    ];
+
+    const zaafTanimi = { 1: {kavram: "Düz Mantık", tam: "Olaylara düz mantıkla mı bakıyorsunuz?", desc: "Gördüğün duvar yolun sonu değil; yöntemin yanlışlığıdır."}, 2: {kavram: "Nefis", tam: "Kendi menfaatinizi mi önceliyorsunuz?", desc: "Bütünün hayrını görmeyen kazanç kayıptır."}, 3: {kavram: "Kaygı", tam: "Eksilme kaygısı mı yaşıyorsunuz?", desc: "Korku hakikatin perdesidir."}, 4: {kavram: "Beklenti", tam: "Duygusal bir beklenti içinde misiniz?", desc: "Beklenti geleceğe atılmış bir kancadır."}, 5: {kavram: "Korku", tam: "Olumsuz sonuçlara mı odaklısınız?", desc: "Karanlık sadece ışığın yokluğudur."}, 6: {kavram: "Elalem", tam: "Başkaları ne der diye mi duruyorsunuz?", desc: "Zihnini başkalarının gözleriyle doldurmuşsun."}, 7: {kavram: "Zemin", tam: "Hatalı bir zeminde mi muhabbet arıyorsunuz?", desc: "Önce niyetini düzelt."} };
 
     function tamDenetim() {
         const d = new Date();
