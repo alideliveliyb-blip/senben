@@ -5,31 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>KBA - Mutlak Mizan v9.3</title>
     <style>
-        :root { --kba-ana: #1b4d3e; --kba-beyaz: #ffffff; --kba-zemin: #f0f4f2; --whatsapp: #25d366; --altin: #d4af37; --uyari: #e67e22; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: var(--kba-zemin); margin: 0; color: var(--kba-ana); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        :root { 
+            --kba-ana: #1b4d3e; 
+            --kba-beyaz: #ffffff; 
+            --kba-zemin: #f0f4f2; 
+            --whatsapp: #25d366; 
+            --altin: #d4af37; 
+            --uyari: #e67e22; 
+        }
+
+        /* Sayfa Genel Yapısı - Scroll Sorunu Çözüldü */
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--kba-zemin); 
+            margin: 0; 
+            padding: 0;
+            color: var(--kba-ana); 
+            overflow-y: auto; 
+            -webkit-overflow-scrolling: touch; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         
-        .kapsayici { background: var(--kba-beyaz); width: 92%; max-width: 480px; border-radius: 40px; box-shadow: 0 30px 70px rgba(0,0,0,0.15); padding: 30px; text-align: center; border: 1px solid rgba(27,77,62,0.1); display: none; margin: 20px auto 40px auto; }
+        /* Ana Kapsayıcı - MacBook ve Mobil Uyumlu */
+        .kapsayici { 
+            background: var(--kba-beyaz); 
+            width: 92%; 
+            max-width: 480px; 
+            border-radius: 40px; 
+            box-shadow: 0 30px 70px rgba(0,0,0,0.15); 
+            padding: 30px; 
+            text-align: center; 
+            border: 1px solid rgba(27,77,62,0.1); 
+            display: none; 
+            margin: 20px auto 40px auto; 
+            box-sizing: border-box;
+        }
+
         .ust-bolum { border-bottom: 3px solid var(--kba-ana); margin-bottom: 25px; padding-bottom: 15px; }
         h1 { font-size: clamp(30px, 8vw, 42px); margin: 0; letter-spacing: 8px; font-weight: 300; }
-        .alt-baslik { font-size: 12px; letter-spacing: 4px; opacity: 0.8; font-weight: bold; }
+        .alt-baslik { font-size: 11px; letter-spacing: 3px; opacity: 0.8; font-weight: bold; text-transform: uppercase; }
         
-        input { width: 100%; padding: 20px; margin: 12px 0; border: 2px solid #ddd; border-radius: 18px; font-size: 18px; outline: none; box-sizing: border-box; }
-        .btn-aksiyon { background: var(--kba-ana); color: white; border: none; padding: 20px; border-radius: 20px; cursor: pointer; width: 100%; font-size: 18px; font-weight: 700; transition: 0.3s; box-shadow: 0 6px 20px rgba(27,77,62,0.3); }
-        
-        .kart { padding: 25px; border-radius: 25px; margin-bottom: 25px; text-align: left; background: #fff; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+        input { 
+            width: 100%; padding: 20px; margin: 12px 0; border: 2px solid #ddd; 
+            border-radius: 18px; font-size: 18px; outline: none; box-sizing: border-box; 
+            text-align: center;
+        }
+
+        .btn-aksiyon { 
+            background: var(--kba-ana); color: white; border: none; padding: 20px; 
+            border-radius: 20px; cursor: pointer; width: 100%; font-size: 18px; 
+            font-weight: 700; transition: 0.3s; box-shadow: 0 6px 20px rgba(27,77,62,0.3); 
+        }
+
+        /* Sonuç Kartları */
+        .kart { padding: 25px; border-radius: 25px; margin-bottom: 25px; text-align: left; background: #fff; border: 1px solid #eee; box-shadow: 0 4px 12px rgba(0,0,0,0.03); position: relative; }
         .baslik-etiket { font-size: 13px; font-weight: 800; text-transform: uppercase; margin-bottom: 12px; display: block; letter-spacing: 1.5px; }
-        .hikmet-butonu { display: flex; align-items: center; justify-content: space-between; background: #fffdf5; border: 2px solid var(--altin); color: #745a03; padding: 18px; border-radius: 15px; cursor: pointer; margin-top: 15px; font-size: 16px; font-weight: bold; text-decoration: none; }
-        .whatsapp-link { text-decoration:none; color: white; background: var(--whatsapp); padding: 20px; border-radius: 20px; display: flex; align-items: center; justify-content: center; gap: 12px; font-weight: 800; font-size: 18px; margin-top: 25px; }
         
-        #introEkran { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); display: flex; justify-content: center; align-items: center; z-index: 9999; padding: 20px; box-sizing: border-box; }
-        #manifestoKart { background: white; padding: 30px; border-radius: 35px; width: 100%; max-width: 420px; text-align: left; min-height: 380px; display: flex; flex-direction: column; justify-content: space-between; }
-        .manifesto-madde { border-left: 5px solid var(--altin); padding-left: 20px; position: absolute; width: calc(100% - 60px); opacity: 0; transition: 0.6s; visibility: hidden; }
+        /* Buton Stilleri */
+        .hikmet-butonu { 
+            display: flex; align-items: center; justify-content: space-between; 
+            background: #fffdf5; border: 2px solid var(--altin); color: #745a03; 
+            padding: 18px; border-radius: 15px; cursor: pointer; margin-top: 15px; 
+            font-size: 16px; font-weight: bold; text-decoration: none; 
+        }
+        
+        .whatsapp-link { 
+            text-decoration:none; color: white; background: var(--whatsapp); 
+            padding: 20px; border-radius: 20px; display: flex; align-items: center; 
+            justify-content: center; gap: 12px; font-weight: 800; font-size: 18px; margin-top: 25px; 
+        }
+
+        /* === GÜVEN MANİFESTOSU EKRANI (Düzeltildi) === */
+        #introEkran { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.92); backdrop-filter: blur(10px); 
+            display: flex; justify-content: center; align-items: center; 
+            z-index: 9999; padding: 20px; box-sizing: border-box; 
+        }
+        
+        #manifestoKart { 
+            background: white; padding: 30px; border-radius: 35px; 
+            width: 100%; max-width: 420px; text-align: left; 
+            min-height: 380px; display: flex; flex-direction: column; 
+            justify-content: space-between; position: relative;
+        }
+
+        #maddeKapsayici { position: relative; flex-grow: 1; margin-top: 20px; }
+        
+        .manifesto-madde { 
+            border-left: 5px solid var(--altin); padding-left: 20px; 
+            position: absolute; width: calc(100% - 30px); opacity: 0; 
+            transition: 0.6s; visibility: hidden; box-sizing: border-box;
+        }
+        
         .manifesto-madde.aktif { opacity: 1; visibility: visible; }
+        .manifesto-madde h4 { color: var(--altin); margin: 0 0 10px 0; font-size: 20px; font-weight: 800; }
+        .manifesto-madde p { margin: 0; font-size: 16px; line-height: 1.6; color: #333; }
+
         #btnIntroDevam { opacity: 0; visibility: hidden; transition: 0.5s; }
         #btnIntroDevam.aktif { opacity: 1; visibility: visible; }
 
-        .modal { display: none; position: fixed; z-index: 100000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); align-items: center; justify-content: center; padding: 20px; }
-        .modal-icerik { background: white; padding: 30px; border-radius: 25px; width: 100%; max-width: 380px; }
+        /* Modal Pencere */
+        .modal { 
+            display: none; position: fixed; z-index: 100000; left: 0; top: 0; 
+            width: 100%; height: 100%; background: rgba(0,0,0,0.8); 
+            align-items: center; justify-content: center; padding: 20px; 
+        }
+        .modal-icerik { background: white; padding: 30px; border-radius: 25px; width: 100%; max-width: 380px; text-align: center; }
     </style>
 </head>
 <body>
@@ -37,7 +121,7 @@
 <div id="introEkran">
     <div id="manifestoKart">
         <h2 style="color:var(--kba-ana); text-align:center; margin-top:0;">🛡️ Güven Manifestosu</h2>
-        <div id="maddeKapsayici" style="position:relative; flex-grow:1;">
+        <div id="maddeKapsayici">
             <div class="manifesto-madde aktif"><h4>1. Fal Değil, Frekanstır</h4><p>Sistem, isminizin Ebced değeri ile gökyüzü döngüsünün matematiksel kesişimidir.</p></div>
             <div class="manifesto-madde"><h4>2. Gelecek Değil, Şimdidir</h4><p>KBA kehanette bulunmaz; zihinsel düğümlerinize ayna tutarak farkındalık sağlar.</p></div>
             <div class="manifesto-madde"><h4>3. Bilim ve Kadim Bilgi</h4><p>Hesaplamalarımız astronomik veriler ve kadim ilimler üzerine inşa edilmiştir.</p></div>
@@ -48,9 +132,15 @@
 </div>
 
 <div class="kapsayici" id="anaUygulama">
-    <div class="ust-bolum"><h1>KBA</h1><div class="alt-baslik">KENDİLİK BİLİNCİ AKADEMİSİ</div></div>
+    <div class="ust-bolum">
+        <h1>KBA</h1>
+        <div class="alt-baslik">KENDİLİK BİLİNCİ AKADEMİSİ</div>
+    </div>
+
     <div id="baslangicEkrani">
-        <div style="font-size:16px; font-style:italic; margin-bottom:20px; padding:15px; background:#f4faf7; border-left:5px solid var(--kba-ana); border-radius:10px;">"Mizanın hassasiyeti, vaktin hakikatidir."</div>
+        <div style="font-size:16px; font-style:italic; margin-bottom:20px; padding:15px; background:#f4faf7; border-left:5px solid var(--kba-ana); border-radius:10px;">
+            "Mizanın hassasiyeti, vaktin hakikatidir."
+        </div>
         <input type="text" id="isimGirdisi" placeholder="İsminizi Yazın...">
         <button class="btn-aksiyon" onclick="sistemiAc()">BAŞLAT</button>
     </div>
@@ -58,42 +148,71 @@
     <div id="denetimMerkezi" style="display:none;">
         <p id="selamlama" style="font-size: 24px; font-weight: 800; margin-bottom: 5px;"></p>
         <p id="saatBilgi" style="font-size: 14px; color: var(--altin); margin-bottom: 25px; font-weight: bold;"></p>
+        
         <button id="anaButon" class="btn-aksiyon" onclick="tamDenetim()">TEFEKKÜR AYNASINA BAK</button>
+
         <div id="sonucAlani" style="display:none; margin-top: 35px;">
-            <div class="kart" style="border-left: 8px solid var(--uyari);"><span class="baslik-etiket" style="color: var(--uyari);">🧠 Zihin Rehberi</span><div id="zihinMetin" style="font-size: 18px; line-height: 1.6; font-weight: 500;"></div><div id="zaafButonAlani"></div><div id="cikisButonAlani"></div></div>
-            <div class="kart" style="border-left: 8px solid #2980b9;"><span class="baslik-etiket" style="color: #2980b9;">👁️ Algı Analizi</span><div id="algiMetin" style="font-size: 18px; line-height: 1.6;"></div></div>
+            <div class="kart" style="border-left: 8px solid var(--uyari);">
+                <span class="baslik-etiket" style="color: var(--uyari);">🧠 Zihin Rehberi</span>
+                <div id="zihinMetin" style="font-size: 18px; line-height: 1.6; font-weight: 500;"></div>
+                <div id="zaafButonAlani"></div>
+                <div id="cikisButonAlani"></div>
+            </div>
+
+            <div class="kart" style="border-left: 8px solid #2980b9;">
+                <span class="baslik-etiket" style="color: #2980b9;">👁️ Algı Analizi</span>
+                <div id="algiMetin" style="font-size: 18px; line-height: 1.6;"></div>
+            </div>
+
             <a id="waLink" href="#" target="_blank" class="whatsapp-link">🟢 KBA Uzmanına Yorumlat</a>
+            
             <button class="btn-aksiyon" style="background:#e0e0e0; color:#666; margin-top:20px; font-size: 16px; padding: 15px;" onclick="location.reload()">🔄 Yeni Analiz Başlat</button>
         </div>
     </div>
 </div>
 
-<div id="aiModal" class="modal"><div class="modal-icerik"><div id="modalBaslik" style="font-size:22px; font-weight:bold; color:var(--altin); margin-bottom:15px;"></div><div id="modalMetin" style="font-size:17px; line-height:1.6;"></div><button class="btn-aksiyon" style="margin-top:20px; padding:12px;" onclick="modalKapat()">KAPAT</button></div></div>
+<div id="aiModal" class="modal">
+    <div class="modal-icerik">
+        <div id="modalBaslik" style="font-size:22px; font-weight:bold; color:var(--altin); margin-bottom:15px;"></div>
+        <div id="modalMetin" style="font-size:17px; line-height:1.6; color:#444;"></div>
+        <button class="btn-aksiyon" style="margin-top:25px; padding:12px;" onclick="modalKapat()">KAPAT</button>
+    </div>
+</div>
 
 <script>
-    let userEbced = 0; let userName = ""; let gezegenSaatBilgisi = ""; let gSaatiNo = 0;
-    const sabitler = { "süleyman": 191, "emine": 106, "derya": 215, "yasemin hafize": 257 };
-    
-    // Mutlak Zaman Döngüsü (Her gün 00:00'dan başlar)
+    let userEbced = 0; 
+    let userName = ""; 
+    let gezegenSaatBilgisi = ""; 
+    let gSaatiNo = 0;
+
+    const sabitler = { 
+        "süleyman": 191, 
+        "emine": 106, 
+        "derya": 215, 
+        "yasemin hafize": 257,
+        "yasemin hafize şanlı": 257 
+    };
+
+    // MUTLAK ZAMAN MOTORU (Senkronize 24 Saatlik Döngü)
     const gezegenler = [
-        {ad: "Satürn (Zuhal)", s: 0}, {ad: "Jüpiter (Müşteri)", s: 1}, {ad: "Mars (Merih)", s: 2}, 
-        {ad: "Güneş (Şems)", s: 3}, {ad: "Venüs (Zühre)", s: 4}, {ad: "Merkür (Utarit)", s: 5}, {ad: "Ay (Kamer)", s: 6}
+        {ad: "Satürn (Zuhal)"}, {ad: "Jüpiter (Müşteri)"}, {ad: "Mars (Merih)"}, 
+        {ad: "Güneş (Şems)"}, {ad: "Venüs (Zühre)"}, {ad: "Merkür (Utarit)"}, {ad: "Ay (Kamer)"}
     ];
-    const gunBaslangiclar = [3, 6, 2, 5, 1, 4, 0]; // Pazardan başlar
+    const gunBaslangiclar = [3, 6, 2, 5, 1, 4, 0]; // Pazar'dan Cumartesiye ilk saat gezegenleri
 
     function hesaplaMutlakSaat() {
         const d = new Date();
         const suankiSaat = d.getHours();
         const gun = d.getDay();
         
-        // 24 saatlik döngüde saati gezegen sırasına oturtur
         let baslangicIdx = gunBaslangiclar[gun];
         let gezegenIdx = (baslangicIdx + suankiSaat) % 7;
         
-        gSaatiNo = suankiSaat % 12; // Analiz algoritması için
+        gSaatiNo = suankiSaat % 12; // Analiz algoritması için döngüsel değer
         gezegenSaatBilgisi = gezegenler[gezegenIdx].ad;
     }
 
+    // MANİFESTO AKIŞI
     const maddeler = document.querySelectorAll('.manifesto-madde');
     let mIndex = 0;
     function manifestoAkis() {
@@ -102,18 +221,23 @@
             mIndex++;
             maddeler[mIndex].classList.add('aktif');
             setTimeout(manifestoAkis, 3000);
-        } else { document.getElementById('btnIntroDevam').classList.add('aktif'); }
+        } else { 
+            document.getElementById('btnIntroDevam').classList.add('aktif'); 
+        }
     }
-    window.onload = () => setTimeout(manifestoAkis, 2500);
+    setTimeout(manifestoAkis, 2500);
 
     function introKapat() { 
         document.getElementById('introEkran').style.opacity = '0';
-        setTimeout(() => { document.getElementById('introEkran').style.display = 'none'; document.getElementById('anaUygulama').style.display = 'block'; }, 500);
+        setTimeout(() => { 
+            document.getElementById('introEkran').style.display = 'none'; 
+            document.getElementById('anaUygulama').style.display = 'block'; 
+        }, 500);
     }
 
     function sistemiAc() {
         userName = document.getElementById('isimGirdisi').value.trim().toLowerCase();
-        if(!userName) return;
+        if(!userName) { alert("Lütfen isminizi yazın."); return; }
         userEbced = sabitler[userName] || 100;
         hesaplaMutlakSaat();
         document.getElementById('baslangicEkrani').style.display = 'none';
@@ -132,7 +256,15 @@
         {kavram: "Akıbet", marifet:"İşin sonunu düşünmelisin.", e:496, desc: "Anlık öfke hapsinden çık, sonunu hayal et."}
     ];
 
-    const zaafTanimi = { 1: {kavram: "Düz Mantık", tam: "Olaylara düz mantıkla mı bakıyorsunuz?", desc: "Gördüğün duvar yolun sonu değil; yöntemin yanlışlığıdır."}, 2: {kavram: "Nefis", tam: "Kendi menfaatinizi mi önceliyorsunuz?", desc: "Bütünün hayrını görmeyen kazanç kayıptır."}, 3: {kavram: "Kaygı", tam: "Eksilme kaygısı mı yaşıyorsunuz?", desc: "Korku hakikatin perdesidir."}, 4: {kavram: "Beklenti", tam: "Duygusal bir beklenti içinde misiniz?", desc: "Beklenti geleceğe atılmış bir kancadır."}, 5: {kavram: "Korku", tam: "Olumsuz sonuçlara mı odaklısınız?", desc: "Karanlık sadece ışığın yokluğudur."}, 6: {kavram: "Elalem", tam: "Başkaları ne der diye mi duruyorsunuz?", desc: "Zihnini başkalarının gözleriyle doldurmuşsun."}, 7: {kavram: "Zemin", tam: "Hatalı bir zeminde mi muhabbet arıyorsunuz?", desc: "Önce niyetini düzelt."} };
+    const zaafTanimi = { 
+        1: {kavram: "Düz Mantık", tam: "Olaylara düz mantıkla mı bakıyorsunuz?", desc: "Gördüğün duvar yolun sonu değil; yöntemin yanlışlığıdır."}, 
+        2: {kavram: "Nefis", tam: "Kendi menfaatinizi mi önceliyorsunuz?", desc: "Bütünün hayrını görmeyen kazanç kayıptır."}, 
+        3: {kavram: "Kaygı", tam: "Eksilme kaygısı mı yaşıyorsunuz?", desc: "Korku hakikatin perdesidir."}, 
+        4: {kavram: "Beklenti", tam: "Duygusal bir beklenti içinde misiniz?", desc: "Beklenti geleceğe atılmış bir kancadır."}, 
+        5: {kavram: "Korku", tam: "Olumsuz sonuçlara mı odaklısınız?", desc: "Karanlık sadece ışığın yokluğudur."}, 
+        6: {kavram: "Elalem", tam: "Başkaları ne der diye mi duruyorsunuz?", desc: "Zihnini başkalarının gözleriyle doldurmuşsun."}, 
+        7: {kavram: "Zemin", tam: "Hatalı bir zeminde mi muhabbet arıyorsunuz?", desc: "Önce niyetini düzelt."} 
+    };
 
     function tamDenetim() {
         const d = new Date();
@@ -140,22 +272,33 @@
         const t = userEbced + f.e + (gezegenSaatBilgisi.includes("Utarit") ? 1 : 0);
         let isSik = (d.getSeconds() % 2 !== 0 || gezegenSaatBilgisi.includes("Utarit"));
         let m7 = (t % 7 === 0) ? 7 : (t % 7);
+        
         document.getElementById('sonucAlani').style.display = "block";
         document.getElementById('anaButon').style.display = "none";
+        
         let waDetay = "";
         if(isSik) {
             document.getElementById('zihinMetin').innerHTML = `"${zaafTanimi[m7].tam}"`;
             document.getElementById('zaafButonAlani').innerHTML = `<div class="hikmet-butonu" onclick="aiRehber('🗝️ ${zaafTanimi[m7].kavram}', '${zaafTanimi[m7].desc}')">🗝️ DÜĞÜMÜ ÇÖZ (Analiz) <span>›</span></div>`;
-            document.getElementById('cikisButonAlani').innerHTML = `<div style="margin-top:15px; font-weight:bold; font-size:12px;">ÇIKIŞ YOLU:</div><div class="hikmet-butonu" style="background:#eef9f1; border-color:#27ae60; color:#1e8449;" onclick="aiRehber('✨ ${f.kavram}', '${f.desc}')">✨ ${f.marifet} <span>›</span></div>`;
+            document.getElementById('cikisButonAlani').innerHTML = `<div style="margin-top:15px; font-weight:bold; font-size:12px; color:#555;">ÇIKIŞ YOLU:</div><div class="hikmet-butonu" style="background:#eef9f1; border-color:#27ae60; color:#1e8449;" onclick="aiRehber('✨ ${f.kavram}', '${f.desc}')">✨ ${f.marifet} <span>›</span></div>`;
             waDetay = `Zihnimde [${zaafTanimi[m7].kavram}] düğümü var.`;
         } else {
-            document.getElementById('zihinMetin').innerHTML = `Zihniniz şu an berrak ve itidalli.`;
-            document.getElementById('cikisButonAlani').innerHTML = `<div style="margin-top:15px; font-weight:bold; font-size:12px;">GÜNÜN REHBER İLKESİ:</div><div class="hikmet-butonu" style="background:#eef9f1; border-color:#27ae60; color:#1e8449;" onclick="aiRehber('✨ ${f.kavram}', '${f.desc}')">✨ ${f.marifet} <span>›</span></div>`;
+            document.getElementById('zihinMetin').innerHTML = `Zihniniz şu an **berrak ve itidalli**.`;
+            document.getElementById('cikisButonAlani').innerHTML = `<div style="margin-top:15px; font-weight:bold; font-size:12px; color:#555;">GÜNÜN REHBER İLKESİ:</div><div class="hikmet-butonu" style="background:#eef9f1; border-color:#27ae60; color:#1e8449;" onclick="aiRehber('✨ ${f.kavram}', '${f.desc}')">✨ ${f.marifet} <span>›</span></div>`;
         }
-        document.getElementById('algiMetin').innerHTML = (t % 2 === 0) ? `Yanıltıcı bir algı olabilir.` : `Hakikatle örtüşüyor.`;
+        
+        document.getElementById('algiMetin').innerHTML = (t % 2 === 0) ? `Maruz kaldığınız durum **yanıltıcı bir algı** içeriyor olabilir.` : `Algılarınız **hakikatle örtüşüyor**. Sağduyu ile ilerleyin.`;
         document.getElementById('waLink').href = `https://wa.me/905333880118?text=${encodeURIComponent("Selam KBA Uzmanı, Analiz Sonucum: " + waDetay)}`;
+        
+        // Kaydırma (Scroll) Otomatikleştirme
+        setTimeout(() => { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }, 300);
     }
-    function aiRehber(b, m) { document.getElementById('modalBaslik').innerText = b; document.getElementById('modalMetin').innerText = m; document.getElementById('aiModal').style.display = "flex"; }
+
+    function aiRehber(b, m) { 
+        document.getElementById('modalBaslik').innerText = b; 
+        document.getElementById('modalMetin').innerText = m; 
+        document.getElementById('aiModal').style.display = "flex"; 
+    }
     function modalKapat() { document.getElementById('aiModal').style.display = "none"; }
 </script>
 </body>
